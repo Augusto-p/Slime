@@ -1,0 +1,5 @@
+node_modules
+Idea.jpg
+dist/linux-unpacked
+dist/builder-*
+dist

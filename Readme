@@ -1,0 +1,83 @@
+# <img src="static/icons/Slime/Smile_icon.svg" height="25"> Slime Files
+<img src="static/icons/Slime/Smile_icon.svg">
+
+**Slime Files** es un explorador de archivos minimalista, rápido y portable para Linux, construido con [Electron](https://www.electronjs.org/). Su objetivo es ofrecer una alternativa moderna, liviana y práctica a los exploradores tradicionales, distribuido en un único archivo `.AppImage` para máxima compatibilidad.
+
+---
+
+## 📦 Características
+
+- ✔️ Interfaz intuitiva y minimalista
+- ⚡ Rápido y sin dependencias externas
+- 📁 Soporte para copiar, cortar, pegar, mover a la papelera, renombrar y más
+- 🎨 Soporte para temas claros y oscuros (próximamente)
+- 🕵️‍♂️ Opción para mostrar/ocultar archivos ocultos
+- 🔑 Atajos de teclado útiles para usuarios avanzados
+- 📦 Distribuido como `.AppImage` — sin instalación necesaria
+
+---
+
+## 🧪 Requisitos
+
+- Linux (cualquier distribución moderna)
+- Permisos de ejecución para el archivo `.AppImage`
+
+---
+
+## 🚀 Instalación
+
+1. Descarga la última versión desde la [página de releases](https://github.com/augusto-p/slime/releases)
+2. Dale permisos de ejecución:
+
+```bash
+chmod +x SlimeFiles-x.x.x.AppImage
+```
+
+3. Ejecuta el explorador:
+
+```bash
+./SlimeFiles-x.x.x.AppImage
+```
+
+Opcional: mueve el archivo a `~/Aplicaciones` o crea un acceso directo en tu escritorio.
+
+---
+
+## 🎹 Atajos de teclado
+
+| Atajo              | Acción                   |
+|--------------------|--------------------------|
+| `Ctrl+Shift+N`     | Crear nueva carpeta      |
+| `Ctrl+V`           | Pegar archivo             |
+| `Ctrl+X`           | Cortar archivo            |
+| `Ctrl+C`           | Copiar archivo            |
+| `Ctrl+F2`          | Renombrar                 |
+| `DELETE`           | Mover a la papelera       |
+| `Ctrl+F3`          | Mostrar/ocultar archivos ocultos |
+
+> Algunos atajos (`Ctrl+A`, `Ctrl+T`) están reservados para funciones futuras.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- [Electron](https://www.electronjs.org/)
+- HTML, CSS, JavaScript
+- Node.js
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más información.
+
+---
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas!  
+Puedes hacer un fork, trabajar en una nueva rama y enviar un pull request.
+
+---
+
+¿Querés que agregue instrucciones para desarrolladores, integración con el sistema o cómo empaquetar el `.AppImage`?

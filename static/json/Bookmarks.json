@@ -1,0 +1,12 @@
+{
+    "Bookmarks":   [
+        {
+            "Icon": "CONFIG",
+            "Path": "/home/augusto/.config",
+            "Name": ".config"
+        },
+        {
+            "Separator": true
+        }
+    ]
+}

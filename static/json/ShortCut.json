@@ -1,0 +1,14 @@
+{
+    "Ctrl+Shift+N":"OpenPopUpNewFolder",
+    "Ctrl+V":"PasteFile",
+    "Ctrl+X":"CutFile",
+    "Ctrl+C":"CopyFile",
+    "Ctrl+A":"",
+    "Ctrl+T":"",
+    "Ctrl+F2":"RenameShortCut",
+    "DELETE":"MoveToTrash",
+    "Ctrl+F3": "ToggleHiddenFiles"
+
+
+
+}

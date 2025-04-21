@@ -1,0 +1,387 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  display: grid;
+  height: 100vh;
+  background-color: #FEFFFE;
+  grid-template-columns: min(18vw, 300px) 1fr;
+  grid-template-rows: min(4vh, 100px) 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.titlebar {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: 7vh 1fr 14vh;
+  position: relative;
+  box-sizing: border-box;
+
+}
+
+.titlebar .window-controls {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.titlebar .window-controls button {
+  background-color: transparent;
+  border: none;
+  font-size: large;
+  box-sizing: border-box;
+
+}
+
+.titlebar .window-controls button:hover {
+  opacity: .8;
+}
+
+.titlebar .paths-controls {
+  grid-row: 1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.titlebar .paths-controls button {
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  position: relative;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.titlebar .paths-controls button svg {
+  width: 100%;
+  fill: #CCCDCC;
+  box-sizing: border-box;
+}
+
+.titlebar .paths-controls button.active svg {
+  fill: #39383A;
+}
+
+.titlebar .Path-Bar {
+  background-color: #EAEAEB;
+  grid-column: 2;
+  border-radius: 10px;
+  margin: auto 2vw;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+  height: max(2vh, 30px);
+}
+
+.titlebar .Path-Bar ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+.titlebar .Path-Bar li {
+  display: flex;
+  align-items: flex-end;
+  color: #929292;
+  fill: #929292;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  font-size: 20px;
+}
+
+.titlebar .Path-Bar li svg {
+  height: max(2vh, 30px);
+  margin: 0 0 0 .5vh;
+  box-sizing: border-box;
+}
+
+.titlebar .Path-Bar li.Separador {
+  width: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+.titlebar .Path-Bar ul li:last-child {
+  color: #525355;
+  fill: #525355;
+}
+
+.titlebar .Path-Bar input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  cursor: pointer;
+  opacity: 0;
+  background-color: #EAEAEB;
+  transition: opacity 300ms ease-in-out;
+}
+
+.titlebar .Path-Bar.active input {
+  opacity: 1;
+  cursor: text;
+}
+
+.Side-bar {
+  grid-column: 1;
+  grid-row: 1/3;
+  height: 100%;
+  background-color: #EAEBEC;
+  position: relative;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.Side-bar .Side-bar_top {
+  display: grid !important;
+  align-items: center;
+  grid-template-columns: min(6vh,50px) 1fr min(6vh,50px);
+  width: 100%;
+  box-sizing: border-box;
+  justify-items: center;
+  
+}
+.Side-bar .Side-bar_top div{
+  display: flex;
+  justify-content: center;
+  height: min(6vh,50px);
+  position: relative;
+  align-items: center;
+  width: 100%;
+}
+.Side-bar .Side-bar_top div img{
+  height: 50%;
+  margin-right: .5vw;
+}
+
+.Side-bar .Side-bar_top h2 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #39383A;
+  font-size: larger;
+  height: 50%;
+    align-items: flex-end;
+}
+
+.Side-bar .Side-bar_top button {
+  padding: 5px;
+  margin: 5px;
+  width: min(4vh, 100px);
+  border: none;
+  background-color: transparent;
+  fill: #515153;
+  border-radius: min(1vh, 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Side-bar .Side-bar_top button:hover {
+  background-color: #D9D8DB;
+}
+
+.Side-bar .row {
+  background-color: transparent;
+  height: min(6vh,50px);
+  margin: 0 1vw;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 6vh 1fr;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  fill: #515153;
+  color: #515153;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  font-size: medium;
+  border: none;
+
+  width: calc(100% - 2vw);
+  text-align: start;
+}
+
+.Side-bar .row:hover {
+  background-color: #D9D8DB;
+}
+
+.Side-bar .row svg {
+  margin: 1vh;
+}
+
+.Side-bar .row.Separador {
+  background-color: #39383A;
+  border-radius: 0;
+  height: .2vh;
+  margin: 1.4vh 1vw;
+  box-sizing: border-box;
+  border-radius: 1vh;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  grid-column: 2;
+  grid-row: 2;
+  margin-left: calc(2vw - 17px);
+}
+
+.grid .file {
+  width: calc(10vw - 10px);
+  height: calc(10vw - 10px);
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 30%;
+  align-items: center;
+  justify-items: center;
+  fill: #39383A;
+  background-color: transparent;
+  border: none;
+}
+
+.grid .file.Directory {
+  fill: #A4CAEE;
+}
+
+
+.grid .file span {
+  grid-row: 2;
+  width: 100%;
+  text-align: center;
+  
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  font-size: medium;
+  pointer-events: none;
+  user-select: none;
+}
+.grid .file img{
+  width: 100%;
+  max-height: calc(7vw - 10px);
+}
+.grid .file svg{
+  grid-row: 1;
+  height: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+  position: relative;
+  user-select: none;
+}
+
+.grid .file.Directory:hover {
+  fill: #438DE6;
+}
+
+.grid .file.Directory:focus {
+  fill: #438DE6;
+}
+
+.grid .file:hover {
+  background-color: #D7D6D7 !important;
+}
+
+.grid .file:focus {
+  background-color: #D7D6D7!important;
+}
+
+.grid .file.Selected{
+  background-color: #8bd3ff!important;
+}
+.grid .file.Directory.Selected {
+  fill: #4346e6;
+}
+
+.null{
+  color: #A4CAEE;
+}
+
+.grid .file .Link_Icon{
+  width: 40% !important;
+  height: auto !important;
+  position: absolute;
+  fill: #438DE6;
+  bottom: 2vw;
+  right: 1vw;
+}
+
+#StartIcon{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 2s linear;
+  animation: StartIconAnimation 5s;
+  
+}
+
+@keyframes StartIconAnimation {
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(101vh);
+  }
+}
+
+#StartIcon.Closed{
+  opacity: 0;
+  transform: translateY(101vh);
+}
+
+#StartIcon img{
+  width: 75%;
+}
