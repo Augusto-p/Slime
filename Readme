@@ -1,6 +1,6 @@
 # Slime Files
 
-! [Slime Icon](static/icons/Slime/Smile_icon.png)
+![Descripción de la imagen](static/icons/Slime/Smile_icon.png)
 
 **Slime Files** es un explorador de archivos minimalista, rápido y portable para Linux, construido con [Electron](https://www.electronjs.org/). Su objetivo es ofrecer una alternativa moderna, liviana y práctica a los exploradores tradicionales, distribuido en un único archivo `.AppImage` para máxima compatibilidad.
 
