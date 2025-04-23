@@ -1,6 +1,6 @@
-# <img src="static/icons/Slime/Smile_icon.png" height=20> Smile Files
+# <img src="static/icons/Smile/Smile_icon.png" height=20> Smile Files
 
-<img src="static/icons/Slime/Smile_icon.png" >
+<img src="static/icons/Smile/Smile_icon.png" >
 
 **Smile Files** es un explorador de archivos minimalista, rápido y portable para Linux, construido con [Electron](https://www.electronjs.org/). Su objetivo es ofrecer una alternativa moderna, liviana y práctica a los exploradores tradicionales, distribuido en un único archivo `.AppImage` para máxima compatibilidad.
 

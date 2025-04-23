@@ -19,13 +19,13 @@
         "sqlite3": "^5.1.7"
     },
     "build": {
-        "icon": "static/icons/Slime/Smile_icon",
+        "icon": "static/icons/Smile/Smile_icon",
         "appId": "com.augusto-p.Smile",
         "productName": "Smile",
         "extraResources": [
             {
-                "from": "slime.desktop",
-                "to": "slime.desktop"
+                "from": "Smile.desktop",
+                "to": "Smile.desktop"
             }
         ]
     }
