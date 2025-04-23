@@ -1,7 +1,8 @@
-# <img src="static/icons/Slime/Smile_icon.svg" height="25"> Slime Files
-<img src="static/icons/Slime/Smile_icon.svg">
+# Smile Files
 
-**Slime Files** es un explorador de archivos minimalista, rápido y portable para Linux, construido con [Electron](https://www.electronjs.org/). Su objetivo es ofrecer una alternativa moderna, liviana y práctica a los exploradores tradicionales, distribuido en un único archivo `.AppImage` para máxima compatibilidad.
+<img src="static/icons/Slime/Smile_icon.png">
+
+**Smile Files** es un explorador de archivos minimalista, rápido y portable para Linux, construido con [Electron](https://www.electronjs.org/). Su objetivo es ofrecer una alternativa moderna, liviana y práctica a los exploradores tradicionales, distribuido en un único archivo `.AppImage` para máxima compatibilidad.
 
 ---
 
@@ -26,17 +27,17 @@
 
 ## 🚀 Instalación
 
-1. Descarga la última versión desde la [página de releases](https://github.com/augusto-p/slime/releases)
+1. Descarga la última versión desde la [página de releases](https://github.com/augusto-p/Smile/releases)
 2. Dale permisos de ejecución:
 
 ```bash
-chmod +x SlimeFiles-x.x.x.AppImage
+chmod +x SmileFiles-x.x.x.AppImage
 ```
 
 3. Ejecuta el explorador:
 
 ```bash
-./SlimeFiles-x.x.x.AppImage
+./SmileFiles-x.x.x.AppImage
 ```
 
 Opcional: mueve el archivo a `~/Aplicaciones` o crea un acceso directo en tu escritorio.
