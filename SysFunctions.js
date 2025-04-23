@@ -53,12 +53,7 @@ function ListFolder(Path) {
         const fullPath = path.join(Path, Name);
         const starts = fs.statSync(fullPath);
         const mimeType = mime.lookup(fullPath);
-        let Type;
-        if (starts.isDirectory()) {
-            Type = "Directory";
-        } else if (starts.isFile()) {
-            Type = "File";
-        }
+        let Type = starts.isDirectory() ? 0 : 1;
         const Perm = (starts.mode & 0o777).toString(8);
         Resultado.push({
             "Path": fullPath,
@@ -87,11 +82,6 @@ async function MoveToTrash(Name, Path, Type) {
             ViewFolder(ActualPath);
         });
     } else {
-        if (Path == undefined) {
-            Path = ActualFile.getAttribute("Data-Path");
-            Name = ActualFile.getAttribute("Data-Name");
-            Type = ActualFile.getAttribute("Data-Type");
-        }
         const ID = await Trash_ADD(Name, Path, Type);
         let Extencion = `${path.extname(Name)}`
         if (Type % 2 == 0) { Extencion = "" }
