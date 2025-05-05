@@ -1,10 +1,10 @@
 {
     "name": "Smile",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "electron-builder"
+        "build": "./Package.sh"
     },
     "devDependencies": {
         "electron": "^28.0.0",
@@ -22,12 +22,18 @@
         "icon": "static/icons/Smile/Smile_icon",
         "appId": "com.augusto-p.Smile",
         "productName": "Smile",
+        "linux": {
+            "target": [
+                "snap",
+                "AppImage"
+            ],
+            "category": "Utility"
+        },
         "extraResources": [
             {
-                "from": "Smile.desktop",
-                "to": "Smile.desktop"
+                "from": "smile.desktop",
+                "to": "smile.desktop"
             }
         ]
-        
     }
 }

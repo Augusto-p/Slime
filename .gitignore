@@ -3,3 +3,7 @@ Idea.jpg
 dist/linux-unpacked
 dist/builder-*
 dist
+logs/
+tree.txt
+Trash.db
+Package.sh

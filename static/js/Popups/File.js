@@ -1,3 +1,4 @@
+const OpenWithFilePopUp = document.getElementById("OpenWithFilePopUp");
 const RenameFilePopUp   = document.getElementById("RenameFilePopUp");
 const DeleteFilePopUp   = document.getElementById("DeleteFilePopUp");
 const CopyFilePopUp     = document.getElementById("CopyFilePopUp");
@@ -5,6 +6,8 @@ const LinkFilePopUp     = document.getElementById("LinkFilePopUp");
 const OpenFilePopup     = document.getElementById("OpenFilePopUp");
 const CutFilePopUp      = document.getElementById("CutFilePopUp");
 const ZipFilePopUp      = document.getElementById("ZipFilePopUp");
+
+
 
 OpenFilePopup.addEventListener("click", (e) => {
     FilePopUP.classList.remove("Active");
@@ -34,6 +37,13 @@ CutFilePopUp.addEventListener("click", (e) => {
     const Name = FilePopUP.dataset.name;
     const Type = FilePopUP.dataset.type;
     CutFile(Name, Path, Type);
+});
+
+OpenWithFilePopUp.addEventListener("click", (e) => {
+    FilePopUP.classList.remove("Active");
+    const Path = FilePopUP.dataset.path;
+    const Name = FilePopUP.dataset.name;
+    MakeOpenWith(Path, Name);
 });
 
 RenameFilePopUp.addEventListener("click", (e) => {

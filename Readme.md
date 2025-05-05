@@ -46,17 +46,22 @@ Opcional: mueve el archivo a `~/Aplicaciones` o crea un acceso directo en tu esc
 
 ## 🎹 Atajos de teclado
 
-| Atajo              | Acción                   |
-|--------------------|--------------------------|
-| `Ctrl+Shift+N`     | Crear nueva carpeta      |
-| `Ctrl+V`           | Pegar archivo             |
-| `Ctrl+X`           | Cortar archivo            |
-| `Ctrl+C`           | Copiar archivo            |
-| `Ctrl+F2`          | Renombrar                 |
-| `DELETE`           | Mover a la papelera       |
-| `Ctrl+F3`          | Mostrar/ocultar archivos ocultos |
+| Tecla / Combinación | Acción                             |
+| ------------------- | ---------------------------------- |
+| `DELETE`            | Eliminar archivo                   |
+| `Ctrl + F2`         | Renombrar archivo                  |
+| `Ctrl + F3`         | Mostrar/ocultar archivos ocultos   |
+| `Ctrl + C`          | Copiar archivo                     |
+| `Ctrl + X`          | Cortar archivo                     |
+| `Ctrl + V`          | Pegar archivo                      |
+| `Ctrl + A`          | Seleccionar todo                   |
+| `Ctrl + T`          | Abrir terminal en esta carpeta     |
+| `Ctrl + Q`          | Cerrar Slime Files                 |
+| `Ctrl + N`          | Nueva ventana                      |
+| `Ctrl + Shift + N`  | Crear nueva carpeta                |
 
-> Algunos atajos (`Ctrl+A`, `Ctrl+T`) están reservados para funciones futuras.
+
+>   Se seguirán añadiendo más atajos en futuras versiones.
 
 ---
 

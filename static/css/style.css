@@ -19,10 +19,11 @@ body {
   grid-template-columns: 7vh 1fr 14vh;
   position: relative;
   box-sizing: border-box;
+  -webkit-app-region: drag;
 
 }
 
-.titlebar .window-controls {
+.window-controls {
   grid-column: 3;
   display: flex;
   align-items: center;
@@ -31,15 +32,15 @@ body {
   user-select: none;
 }
 
-.titlebar .window-controls button {
+.window-controls button {
   background-color: transparent;
   border: none;
   font-size: large;
   box-sizing: border-box;
-
+  -webkit-app-region: no-drag;  
 }
 
-.titlebar .window-controls button:hover {
+.window-controls button:hover {
   opacity: .8;
 }
 
@@ -60,6 +61,7 @@ body {
   height: 100%;
   padding: 0;
   box-sizing: border-box;
+  -webkit-app-region: no-drag;  
 }
 
 .titlebar .paths-controls button svg {
@@ -83,6 +85,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   height: max(2vh, 30px);
+  -webkit-app-region: no-drag;  
 }
 
 .titlebar .Path-Bar ul {
@@ -157,13 +160,13 @@ body {
 }
 
 .Side-bar .Side-bar_top {
-  display: grid !important;
+  display: flex;
   align-items: center;
   grid-template-columns: min(6vh,50px) 1fr min(6vh,50px);
   width: 100%;
   box-sizing: border-box;
   justify-items: center;
-  
+  -webkit-app-region: drag;  
 }
 .Side-bar .Side-bar_top div{
   display: flex;
@@ -172,6 +175,9 @@ body {
   position: relative;
   align-items: center;
   width: 100%;
+}
+.Side-bar .Side-bar_top svg{
+  height: -webkit-fill-available;
 }
 .Side-bar .Side-bar_top div img{
   height: 50%;
@@ -201,6 +207,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-app-region: no-drag;  
 }
 
 .Side-bar .Side-bar_top button:hover {
@@ -212,8 +219,7 @@ body {
   height: min(6vh,50px);
   margin: 0 1vw;
   border-radius: 10px;
-  display: grid;
-  grid-template-columns: 6vh 1fr;
+  display: flex;
   align-items: center;
   box-sizing: border-box;
   position: relative;
@@ -224,9 +230,13 @@ body {
   padding: 0;
   font-size: medium;
   border: none;
-
   width: calc(100% - 2vw);
   text-align: start;
+}
+.Side-bar .row span{
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Side-bar .row:hover {
@@ -234,7 +244,8 @@ body {
 }
 
 .Side-bar .row svg {
-  margin: 1vh;
+  margin: 1vh 1vh 1vh 0;
+  height: -webkit-fill-available;
 }
 
 .Side-bar .row.Separador {
@@ -276,10 +287,12 @@ body {
   fill: #39383A;
   background-color: transparent;
   border: none;
+  
 }
 
 .grid .file.Directory {
   fill: #A4CAEE;
+  
 }
 
 
@@ -330,6 +343,7 @@ body {
 
 .grid .file.Selected{
   background-color: #8bd3ff!important;
+  -webkit-user-drag: element;
 }
 .grid .file.Directory.Selected {
   fill: #4346e6;
@@ -360,8 +374,8 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  transition: all 2s linear;
-  animation: StartIconAnimation 5s;
+  transition: all .5s linear;
+  animation: StartIconAnimation 1s;
   
 }
 
@@ -369,7 +383,7 @@ body {
   0%{
     transform: translateY(0);
   }
-  50%{
+  75%{
     transform: translateY(0);
   }
   100%{

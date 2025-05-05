@@ -1,22 +1,15 @@
-const { ipcRenderer } = require('electron');
-const { exec } = require('child_process');
 
+const { exec } = require('child_process');
+const URLParams =new URLSearchParams(window.location.search)
+const winID = URLParams.get("winID")
+let ActualPath = URLParams.get("Path");
 
 
 
 require("dotenv").config();
-document.getElementById('min-button').addEventListener('click', () => {
-  ipcRenderer.send('Window:Minimize');
-});
-
 document.getElementById('max-button').addEventListener('click', () => {
-  ipcRenderer.send('Window:Maximize');
+  ipcRenderer.send('Window:Maximize', winID);
 });
-
-document.getElementById('close-button').addEventListener('click', () => {
-  ipcRenderer.send('Window:Close');
-});
-
 
 
 const IconsPath = path.join(__dirname, 'static/json/icons.json');
@@ -53,6 +46,7 @@ const ShortCutPath = path.join(__dirname, 'static/json/ShortCut.json');
 const ShortCuts = JSON.parse(fs.readFileSync(ShortCutPath, 'utf-8'));
 
 
+
 function getFileIconContent(name) {
   if(name[0] == "."){
     name = name.slice(1);
@@ -72,3 +66,10 @@ function getFileIconContent(name) {
     return fs.readFileSync(path.join(__dirname,`static/icons/file.svg`), 'utf-8');
   }
 }
+ipcRenderer.on("SelectedFiles:UnSelected",()=>{
+  let Selected = document.getElementsByClassName("Selected");
+  for (let index =(Selected.length-1) ; index >=0; index--) {
+    Selected[index].classList.remove("Selected"); 
+  }
+
+});

@@ -1,4 +1,4 @@
-section.NewFolder, section.Rename{
+section.NewFolder, section.Rename, section.OpenWith{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -6,13 +6,14 @@ section.NewFolder, section.Rename{
     right: 0;
     z-index: 22;
     transform: translateY(-101vh);
-    background-color: rgba(57, 56, 58, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
     transition: all 200ms ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-section.NewFolder.Active, section.Rename.Active{
+section.NewFolder.Active, section.Rename.Active, section.OpenWith.Active{
     transform: translateY(0);
 }
 
@@ -67,7 +68,7 @@ div.NewFolder input, div.Rename input{
     padding-left: 5px;
 }
 
-div.NewFolder button, div.Rename button{
+div.NewFolder button, div.Rename button, div.OpenWith button{
     width: 12vw;
     height: 4vh;
     font-size: larger;
@@ -76,18 +77,18 @@ div.NewFolder button, div.Rename button{
     user-select: none;
 }
 
-div.NewFolder button#NewFolder-Closed, div.Rename button#Rename-Closed{
+button.PopsCancel {
     background-color: #D9D8DB;
 }
 
-div.NewFolder button#NewFolder-Save, div.Rename button#Rename-Save{
+button.PopsSave{
     background-color: #A4CAEE;
 }
 
-div.NewFolder button#NewFolder-Closed:hover, div.Rename button#Rename-Closed:hover{
+button.PopsCancel:hover{
     background-color: #CCCDCC;
 }
 
-div.NewFolder button#NewFolder-Save:hover, div.Rename button#Rename-Save:hover{
+button.PopsSave:hover{
     background-color: #438DE6;
 }

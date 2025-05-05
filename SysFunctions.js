@@ -67,16 +67,22 @@ function ListFolder(Path) {
     return Resultado.sort(FilesSort);
 }
 
+function MoveFile(Name, Folder, Path) {
+    fs.renameSync(Path, path.join(Folder, Name))
+    ViewFolder(ActualPath)
+}
+
+
 async function MoveToTrash(Name, Path, Type) {
-    if (SelectedFiles.length != 0) {
-        CopyAndCutFile = [];
-        SelectedFiles.forEach(async File => {
-            Path = File.btn.getAttribute("Data-Path");
-            Name = File.btn.getAttribute("Data-Name");
-            Type = File.btn.getAttribute("Data-Type");
+    if (!await ipcRenderer.invoke('SelectedFiles:Void')) {
+        let FilesSelected = await ipcRenderer.invoke('SelectedFiles:Get');
+        FilesSelected.forEach(async File => {
+            Path = File.Path;
+            Name = File.Name;
+            Type = File.Type;
             const ID = await Trash_ADD(Name, Path, Type);
             let Extencion = `${path.extname(Name)}`
-            if (Type % 2 == 0) { Extencion = "" }
+            if (Type == 0) { Extencion = "" }
             let TrashPath = path.join($TRASH, `${NumberToText(ID)}${Extencion}`);
             fs.renameSync(Path, TrashPath);
             ViewFolder(ActualPath);
@@ -106,22 +112,21 @@ async function RestureFile(Path, ID) {
     await ipcRenderer.invoke('Trash:delete', ID);
 }
 
-function PasteFile() {
-    CopyAndCutFile.forEach(CACF => {
+async function PasteFile() {
+    let ClipBoard = await ipcRenderer.invoke('ClipBoard:Get');
+    ClipBoard.forEach((CACF, i) => {
         if (CACF.Mode == 0) {
             if (CACF.Type == 0) {
                 fs.copyFileSync(CACF.Path, path.join(ClearPath(ActualPath), CACF.Name));
             } else if (CACF.Type == 1) {
                 fs.cpSync(CACF.Path, path.join(ClearPath(ActualPath), CACF.Name), { recursive: true });
             }
-            ViewFolder(ActualPath);
         } else if (CACF.Mode == 1) {
             let NewPath = path.join(ClearPath(ActualPath), CACF.Name);
             fs.renameSync(CACF.Path, NewPath);
-            ViewFolder(ActualPath);
-            CACF.Path = NewPath;
-            CACF.Mode = 0;
+            ipcRenderer.send('ClipBoard:CutToCopy', i, NewPath);
         }
+        ViewFolder(ActualPath);
     });
 }
 
@@ -130,7 +135,51 @@ function RenameFile(Path, Name) {
     ViewFolder(ActualPath);
 }
 
+async function ListDevice() {
+    let Data = await runBashCommand(`
+        #!/bin/bash
+    first=true;echo -n "["
+    lsblk -np -o NAME,TYPE,SIZE,MOUNTPOINT,MODEL -P | grep -E 'TYPE="part"|TYPE="rom"' | while read -r line; do
+        dev_path=$(echo "$line" | grep -oP 'NAME="\\K[^"]+')
+        dev_type=$(echo "$line" | grep -oP 'TYPE="\\K[^"]+')
+        dev_size=$(echo "$line" | grep -oP 'SIZE="\\K[^"]+')
+        MOUNTPOINT=$(echo "$line" | grep -oP 'MOUNTPOINT="\\K[^"]*');dev_mount="`+ '${MOUNTPOINT:-Not mounted}' + `"
+        MODEL=$(echo "$line" | grep -oP 'MODEL="\\K[^"]*');dev_model="`+ '${MODEL:-Unknown}' + `"
+        if echo "$dev_mount" | grep -qE '(^|/)(boot|boot/efi)'; then continue;fi
+        if echo "$dev_mount" | grep -iq 'swap'; then continue;fi
+        if echo "$dev_model" | grep -iq 'swap'; then continue;fi
+        #dev_model=$(echo  "$dev_model");dev_mount=$(echo "$dev_mount")
+        info=$(udevadm info --query=all --name="$dev_path" 2>/dev/null)
+        if echo "$info" | grep -q "ID_CDROM=1"; then device_type="CD/DVD"
+        elif echo "$info" | grep -q "ID_USB_DRIVER=usb-storage"; then device_type="USB"
+        elif echo "$info" | grep -q "ID_DRIVE_FLASH_SD=1"; then device_type="SD Card"
+        elif echo "$info" | grep -q "ID_DRIVE_FLASH=1"; then device_type="Flash Drive"
+        elif echo "$info" | grep -qE 'ID_MODEL=.*(Phone|Android)'; then device_type="Phone"
+        else device_type="Internal Hard Drive";fi
+        if [ "$first" = true ]; then first=false; else echo -n ","; fi
+        echo -n "`+ '{\\"device\\": \\"${dev_path:-Unknown}\\",\\"type\\": \\"${device_type}\\",\\"size\\": \\"${dev_size}\\",\\"mount_point\\": \\"${dev_mount}\\",\\"model\\": \\"${dev_model}\\"}"' + `
+    done
+    mount | grep -E 'type (vboxsf|vmhgfs|9p|virtiofs|prl_fs)' | while read -r line; do
+        dev_path="shared"
+        device_type="Shared Folder"
+        dev_size="N/A"
+        dev_mount=$(echo "$line" | awk '{print $3}')
+        dev_model=$(echo "$line" | awk '{print $1}')
+        echo -n ","
+        `+ 'echo -n "{\\"device\\": \\"${dev_path}\\","\\"type\\": \\"${device_type}\\","\\"size\\": \\"${dev_size}\\","\\"mount_point\\": \\"${dev_mount}\\","\\"model\\": \\"${dev_model}\\"}"' + `
+    done
+    echo "]"`)
+    if (Data[1] === ',') {
+        Data = Data[0] + Data.slice(2)
+    }
+    Data = Data.replaceAll('"Unknown"', null)
+    return JSON.parse(Data);
+
+}
+
 function runBashCommand(command) {
+
+
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
             if (error) {
@@ -145,7 +194,6 @@ function runBashCommand(command) {
         });
     });
 }
-
 async function MakeZip(Name, Files) {
     if (Name == null && Files.length == 1) {
         Name = path.basename(path.basename(Files[0]));
